@@ -3,19 +3,46 @@ import { useState, useEffect } from "react";
 const NAV_LINKS = ["Services","Projects","Process","Contact"];
 
 const SERVICES = [
-  { title:"Web Development", desc:"We deliver custom websites & web apps that streamline operations and drive growth.", icon:<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> },
-  { title:"Mobile App Development", desc:"We build intuitive mobile apps that engage users and accelerate business growth.", icon:<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> },
-  { title:"AI-Based Web Apps", desc:"We develop intelligent AI systems that automate processes and enhance decisions.", icon:<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M21.17 8H12V2.83"/><circle cx="12" cy="12" r="3"/></svg> },
-  { title:"Web to App Conversion", desc:"We convert your existing website into a fully functional Android mobile app.", icon:<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> },
-  { title:"API Development", desc:"We provide secure and scalable REST & GraphQL APIs for modern businesses.", icon:<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg> },
-  { title:"eCommerce Development", desc:"We design feature-rich stores that maximize sales and customer satisfaction.", icon:<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> },
+  { title:"Web Development", desc:"We deliver custom websites & web apps that streamline operations and drive growth.", tags:["React","Next.js","Node.js"] },
+  { title:"Mobile App Development", desc:"We build intuitive mobile apps that engage users and accelerate business growth.", tags:["React Native","Flutter","Firebase"] },
+  { title:"AI-Based Web Apps", desc:"We develop intelligent AI systems that automate processes and enhance decisions.", tags:["OpenAI","Python","Node.js"] },
+  { title:"Web to App Conversion", desc:"We convert your existing website into a fully functional Android mobile app.", tags:["React Native","Flutter","API Integration"] },
+  { title:"API Development", desc:"We provide secure and scalable REST & GraphQL APIs for modern businesses.", tags:["Node.js","Express","MongoDB"] },
+  { title:"eCommerce Development", desc:"We design feature-rich stores that maximize sales and customer satisfaction.", tags:["Stripe","WooCommerce","React"] },
 ];
 
 const PROJECTS = [
-  { title:"ShopEase", sub:"E-Commerce Platform", desc:"Full-stack multi-vendor marketplace with real-time inventory, Stripe payments, and seller dashboard.", color:"#2563eb", tag:"Web + Mobile", result:"3x sales increase", icon:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> },
-  { title:"SafarUmrah", sub:"Travel Agency Portal", desc:"Full Umrah travel portal with package management, online booking, hotel & flight tracking.", color:"#10b981", tag:"Web App", result:"800+ bookings", icon:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
-  { title:"Quran Academy", sub:"E-Learning Platform", desc:"Online Quran learning with Teacher, Admin & Student panels, live classes, and payment integration.", color:"#14b8a6", tag:"Web App", result:"500+ students", icon:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> },
-  { title:"FoodRush", sub:"Food Delivery App", desc:"Restaurant discovery & food ordering with live tracking, loyalty rewards, and multi-restaurant management.", color:"#ef4444", tag:"Web + Mobile", result:"50+ restaurants", icon:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg> },
+  { title:"ShopEase", sub:"E-Commerce Platform", desc:"Full-stack multi-vendor marketplace with real-time inventory, Stripe payments, and seller dashboard.", color:"#2563eb", tag:"Web + Mobile", result:"3x sales increase", tech:["React","Node.js","MongoDB","Stripe"], details:"ShopEase is a full-featured multi-vendor e-commerce marketplace built for scale. Sellers can manage their own storefronts, inventory, and orders through a dedicated dashboard. Buyers enjoy a seamless shopping experience with real-time stock updates, secure Stripe payments, and order tracking. Admin panel provides complete oversight of all transactions and users." },
+  { title:"SafarUmrah", sub:"Travel Agency Portal", desc:"Full Umrah travel portal with package management, online booking, hotel & flight tracking.", color:"#10b981", tag:"Web App", result:"800+ bookings", tech:["React","Node.js","MongoDB"], details:"SafarUmrah is a comprehensive travel agency portal tailored for Umrah packages. It enables agencies to list, manage, and sell Umrah packages online. Features include hotel & flight tracking, booking management, customer CRM, and automated invoice generation. The platform has facilitated 800+ successful bookings since launch." },
+  { title:"Quran Academy", sub:"Quran Academy Management System", desc:"Online Quran learning with Teacher, Admin & Student panels, live classes, and payment integration.", color:"#14b8a6", tag:"Web App", result:"500+ students",
+    tech:["React.js","Ant Design","React Router","Axios","Node.js","Express.js","MongoDB","JWT Authentication"],
+    details:"A complete Quran Academy Management System developed using the MERN Stack. The platform is designed for online Quran academies to manage students, teachers, classes, fee vouchers, attendance, and academic activities through dedicated role-based dashboards.",
+    demoAdmin:{ email:"admin@gmail.com", pass:"123456", url:"https://quran-academy-kappa-blush.vercel.app/login" },
+    demoUser:{ email:"student@gmail.com", pass:"123456", url:"https://quran-academy-kappa-blush.vercel.app/login" },
+    demoTeacher:{ email:"teacher@gmail.com", pass:"123456", url:"https://quran-academy-kappa-blush.vercel.app/login" },
+    features:{
+      user:["Student Registration & Login","View Enrolled Courses","Live Classes Access","Attendance Tracking","Fee Voucher Management","Assignment Submission","Profile Management","Course Progress Monitoring"],
+      admin:["Complete Academy Management","Student Management","Teacher Management","Course Management","Fee Voucher Generation","Attendance Monitoring","Reports & Analytics","System Configuration"],
+    },
+    teacherFeatures:["Teacher Dashboard","Student Management","Attendance Management","Assignment Management","Live Class Scheduling","Performance Tracking","Student Progress Reports"],
+    payment:["Role-Based Authentication","Student Dashboard","Teacher Dashboard","Admin Dashboard","Live Classes Management","Fee Voucher System","Attendance Tracking","Assignment Management"],
+    highlights:["Multi-Role Authentication System","Secure Login & Authorization","Modern Responsive UI","Real-Time Data Management","Academy Administration Tools","Student & Teacher Portals","Fee Voucher Management","Scalable MERN Stack Architecture"],
+    usecase:"This system was developed for a Quran Academy to streamline the management of students, teachers, courses, attendance, assignments, and fee records through a centralized digital platform.",
+  },
+  { title:"FoodRush", sub:"Food Delivery App", desc:"Restaurant discovery & food ordering with live tracking, loyalty rewards, and multi-restaurant management.", color:"#ef4444", tag:"Web + Mobile", result:"50+ restaurants", tech:["React Native","React","Node.js","Redis"], details:"FoodRush is a complete food ordering and delivery ecosystem. Customers discover restaurants, browse menus, place orders, and track delivery in real-time. Restaurants manage orders, menus, and availability through a dedicated dashboard. The platform supports loyalty rewards, promo codes, and multi-restaurant cart. Currently powers 50+ restaurants with thousands of monthly orders." },
+  { title:"PayPerTask", sub:"Pay Per Task Advertising Network", desc:"A full-featured advertising network where users earn by completing tasks & offers, with a powerful admin panel for managing users, payments, and withdrawals.", color:"#8b5cf6", tag:"Web App", result:"Full MERN Stack",
+    tech:["React.js","Ant Design","Axios","React Router","Node.js","Express.js","MongoDB","JWT Authentication"],
+    details:"A full-featured Pay Per Task Advertising Network developed using the MERN Stack. The platform enables users to earn money by completing advertising offers and tasks while providing administrators with powerful tools to manage users, payments, withdrawals, and platform operations.",
+    demoAdmin:{ email:"admin@gmail.com", pass:"123456", url:"https://pay-per-task-front.vercel.app/admin/login" },
+    demoUser:{ email:"dummy@gmail.com", pass:"dummy123", url:"https://pay-per-task-front.vercel.app/login" },
+    features:{
+      user:["User Registration & Authentication","Task Completion System","Offer Wall Integration","Wallet Management","Earnings Dashboard","Deposit Funds","Withdraw Earnings","Transaction History","Profile Management","Responsive User Interface"],
+      admin:["Secure Admin Panel","User Management","Task & Offer Management","Deposit Verification","Withdrawal Approval System","Transaction Monitoring","Revenue Analytics","Dashboard Statistics","Platform Configuration"],
+    },
+    payment:["User Deposits","Withdrawal Requests","Wallet Balance Tracking","Deposit History","Withdrawal History","Transaction Management","Payment Verification Workflow"],
+    highlights:["Modern Responsive Design","Secure Authentication System","Complete Wallet Management","Deposit & Withdrawal Processing","Real-Time Dashboard Statistics","Admin Management System","Scalable MERN Stack Architecture","Clean and User-Friendly Interface"],
+    usecase:"The platform is designed for advertising networks where users earn rewards by completing tasks, offers, surveys, and promotional activities. Administrators can efficiently manage users, payments, withdrawals, and platform performance through a centralized dashboard.",
+  },
 ];
 
 const PROCESS = [
@@ -28,25 +55,7 @@ const PROCESS = [
   { num:"07", title:"Monitoring & Optimization", desc:"After launch, we monitor performance, user feedback, and analytics closely. These insights inform ongoing feature refinement, improvements, and issue resolution." },
 ];
 
-// const TESTIMONIALS = [
-//   { name:"Jessica Carter", role:"Product Manager", text:"DevCore transformed our concept into a fully functional mobile app that exceeded expectations. The design, speed, and usability are incredible — our users love it!" },
-//   { name:"Michael Anderson", role:"Chief Marketing Officer", text:"Their team understood our vision perfectly. From strategy to deployment, every stage was handled with professionalism and creativity. Truly the best we've worked with." },
-//   { name:"David Thompson", role:"IT Project Lead", text:"We were impressed by how quickly DevCore delivered without compromising quality. The app performs smoothly across all platforms and has helped us engage more customers." },
-//   { name:"Sophia Bennett", role:"Startup Founder", text:"DevCore's services are second to none. Their communication is transparent, and the end product is sleek, secure, and scalable." },
-//   { name:"Daniel Harris", role:"Chief Technology Officer", text:"Our collaboration with DevCore was seamless. They integrated advanced features and ensured our app stood out in the crowded marketplace." },
-//   { name:"Ava Mitchell", role:"Business Analyst", text:"The custom software optimized our internal workflows and improved efficiency by 40%. Their development process is thorough and transparent." },
-// ];
-
-const INDUSTRIES = [
-  { title:"eCommerce", icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> },
-  { title:"Healthcare", icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
-  { title:"Education", icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> },
-  { title:"Fintech", icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg> },
-  { title:"Food & Delivery", icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg> },
-  { title:"Real Estate", icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
-  { title:"Travel", icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> },
-  { title:"Logistics", icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> },
-];
+const INDUSTRIES = ["eCommerce","Healthcare","Education","Fintech","Food & Delivery","Real Estate","Travel","Logistics"];
 
 const FAQS = [
   { q:"What mobile app development services do you offer?", a:"DevCore offers iOS, Android, cross-platform, and enterprise-level app development. We build high-performance, scalable applications customized to your business requirements from design to deployment." },
@@ -57,6 +66,16 @@ const FAQS = [
 ];
 
 const TICKER = ["Web Development","Mobile Apps","AI Solutions","eCommerce","API Development","UI/UX Design"];
+
+const TECH_SECTIONS = [
+  { cat:"Mobile Apps", tabs:[
+    { label:"Android", techs:["React Native","Kotlin","Java","Flutter","Firebase","Jetpack"] },
+  ]},
+  { cat:"Web Platforms", tabs:[
+    { label:"Frontend", techs:["React.js","Next.js","TypeScript","Tailwind","Redux"] },
+    { label:"Backend", techs:["Node.js","Express","MongoDB","PostgreSQL","REST API"] },
+  ]},
+];
 
 const LogoSVG = ({size=40}) => (
   <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
@@ -69,9 +88,9 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  // const [tIdx, setTIdx] = useState(0);
-  const [form, setForm] = useState({name:"",phone:"",budget:"",message:""});
   const [techTabs, setTechTabs] = useState([0,0]);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [form, setForm] = useState({name:"",phone:"",budget:"",message:""});
   const [formStatus, setFormStatus] = useState("idle");
   const [isMobile, setIsMobile] = useState(false);
 
@@ -79,11 +98,6 @@ export default function App() {
     const c=()=>setIsMobile(window.innerWidth<768);c();
     window.addEventListener("resize",c);return()=>window.removeEventListener("resize",c);
   },[]);
-
-  // useEffect(()=>{
-  //   const id=setInterval(()=>setTIdx(i=>(i+1)%TESTIMONIALS.length),4000);
-  //   return()=>clearInterval(id);
-  // },[]);
 
   const scrollTo=(id:string)=>{document.getElementById(id)?.scrollIntoView({behavior:"smooth"});setMenuOpen(false);};
 
@@ -97,7 +111,7 @@ export default function App() {
     }catch{setFormStatus("error");}
   };
 
-  const inp={background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:8,padding:"13px 16px",color:"#fff",fontSize:15,outline:"none",fontFamily:"inherit",width:"100%",display:"block"};
+  const inp={background:"rgba(255,255,255,.05)",border:"1px solid rgba(255,255,255,.12)",borderRadius:8,padding:"13px 16px",color:"#fff",fontSize:15,outline:"none",fontFamily:"inherit",width:"100%",display:"block"};
 
   return(
     <div style={{fontFamily:"'Segoe UI',system-ui,sans-serif",background:"#060b14",color:"#e2e8f0",overflowX:"hidden",minHeight:"100vh"}}>
@@ -107,18 +121,17 @@ export default function App() {
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
         *{box-sizing:border-box;margin:0;padding:0}
         ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#2563eb;border-radius:2px}
-        input::placeholder,textarea::placeholder,select::placeholder{color:rgba(255,255,255,0.3)}
+        input::placeholder,textarea::placeholder{color:rgba(255,255,255,.3)}
         select option{background:#0f172a;color:#fff}
-        .hover-card{transition:transform .3s,border-color .3s,box-shadow .3s}
-        .hover-card:hover{transform:translateY(-5px);border-color:rgba(37,99,235,.4)!important;box-shadow:0 16px 48px rgba(37,99,235,.15)!important}
+        .hc{transition:transform .3s,border-color .3s,box-shadow .3s}
+        .hc:hover{transform:translateY(-5px);border-color:rgba(37,99,235,.4)!important;box-shadow:0 16px 48px rgba(37,99,235,.15)!important}
         .srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
         .prj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-        .step-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .step-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
         .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
         .ticker-wrap{overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:16px 0;background:#0a1120}
         .ticker-inner{display:inline-flex;animation:ticker 20s linear infinite}
-        .ticker-inner:hover{animation-play-state:paused}
-        .nav-link{background:none;border:none;color:rgba(255,255,255,.7);padding:8px 14px;borderRadius:6px;fontSize:14px;fontWeight:500;cursor:pointer;transition:color .2s}
+        .nav-link{background:none;border:none;color:rgba(255,255,255,.7);padding:8px 14px;border-radius:6px;font-size:14px;font-weight:500;cursor:pointer;transition:color .2s}
         .nav-link:hover{color:#fff}
         @media(max-width:900px){.srv-grid{grid-template-columns:repeat(2,1fr)!important}.ind-grid{grid-template-columns:repeat(2,1fr)!important}}
         @media(max-width:600px){.srv-grid{grid-template-columns:1fr!important}.prj-grid{grid-template-columns:1fr!important}.step-grid{grid-template-columns:1fr!important}.ind-grid{grid-template-columns:repeat(2,1fr)!important}}
@@ -176,8 +189,7 @@ export default function App() {
             <button onClick={()=>scrollTo("projects")} style={{background:"#2563eb",border:"none",color:"#fff",padding:"15px 32px",borderRadius:8,fontWeight:700,fontSize:16,cursor:"pointer",boxShadow:"0 0 40px rgba(37,99,235,.4)"}}>View Our Work</button>
             <button onClick={()=>scrollTo("contact")} style={{background:"transparent",border:"1px solid rgba(255,255,255,.2)",color:"#fff",padding:"15px 32px",borderRadius:8,fontWeight:700,fontSize:16,cursor:"pointer"}}>Get In Touch</button>
           </div>
-          {/* Stats */}
-          <div style={{display:"flex",justifyContent:"center",borderTop:"1px solid rgba(255,255,255,.08)",paddingTop:48,gap:0,flexWrap:"wrap"}}>
+          <div style={{display:"flex",justifyContent:"center",borderTop:"1px solid rgba(255,255,255,.08)",paddingTop:48,flexWrap:"wrap"}}>
             {[{v:"4+",l:"Projects Delivered"},{v:"4+",l:"Happy Clients"},{v:"2+",l:"Years of Experience"},{v:"100%",l:"On-Time Delivery"}].map((s,i,a)=>(
               <div key={i} style={{flex:"1 1 100px",padding:isMobile?"14px 10px":"0 32px",borderRight:i<a.length-1?"1px solid rgba(255,255,255,.08)":"none"}}>
                 <div style={{fontSize:isMobile?30:42,fontWeight:900,color:"#38bdf8"}}>{s.v}</div>
@@ -210,14 +222,13 @@ export default function App() {
           </div>
           <div className="srv-grid" style={{borderRadius:16,overflow:"hidden",border:"1px solid rgba(255,255,255,.06)"}}>
             {SERVICES.map((s,i)=>(
-              <div key={i} className="hover-card" style={{background:"#0a1120",padding:32,border:"none",cursor:"pointer",position:"relative",overflow:"hidden"}}>
+              <div key={i} className="hc" style={{background:"#0a1120",padding:32,cursor:"pointer",position:"relative",overflow:"hidden"}}>
                 <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:i%2===0?"linear-gradient(90deg,#2563eb,transparent)":"linear-gradient(90deg,#38bdf8,transparent)",opacity:.5}}/>
-                <div style={{width:52,height:52,borderRadius:14,background:"rgba(37,99,235,.1)",border:"1px solid rgba(37,99,235,.2)",display:"flex",alignItems:"center",justifyContent:"center",marginBottom:18,color:"#38bdf8"}}>
-                  {s.icon}
-                </div>
                 <h3 style={{fontSize:16,fontWeight:700,color:"#fff",marginBottom:10}}>{s.title}</h3>
                 <p style={{color:"rgba(255,255,255,.45)",fontSize:13,lineHeight:1.75,marginBottom:18}}>{s.desc}</p>
-
+                <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+                  {s.tags.map(t=><span key={t} style={{fontSize:11,background:"rgba(37,99,235,.1)",color:"#60a5fa",padding:"3px 9px",borderRadius:20,fontWeight:600,border:"1px solid rgba(37,99,235,.2)"}}>{t}</span>)}
+                </div>
               </div>
             ))}
           </div>
@@ -227,20 +238,18 @@ export default function App() {
       {/* PROJECTS */}
       <section id="projects" style={{padding:"100px 24px",background:"#0a1120"}}>
         <div style={{maxWidth:1200,margin:"0 auto"}}>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:48,flexWrap:"wrap",gap:16}}>
-            <div>
-              <div style={{fontSize:11,color:"#38bdf8",fontWeight:800,letterSpacing:"3px",textTransform:"uppercase",marginBottom:12}}>OUR WORK</div>
-              <h2 style={{fontSize:isMobile?28:42,fontWeight:900,color:"#fff"}}>Our Success Stories</h2>
-            </div>
-
+          <div style={{marginBottom:48}}>
+            <div style={{fontSize:11,color:"#38bdf8",fontWeight:800,letterSpacing:"3px",textTransform:"uppercase",marginBottom:12}}>OUR WORK</div>
+            <h2 style={{fontSize:isMobile?28:42,fontWeight:900,color:"#fff"}}>Our Success Stories</h2>
           </div>
           <div className="prj-grid">
             {PROJECTS.map((p,i)=>(
-              <div key={i} className="hover-card" style={{background:"#060b14",border:"1px solid rgba(255,255,255,.07)",borderRadius:16,overflow:"hidden",cursor:"pointer"}}>
+              <div key={i} className="hc" onClick={()=>setHoveredProject(i)} style={{background:"#060b14",border:"1px solid rgba(255,255,255,.07)",borderRadius:16,overflow:"hidden",cursor:"pointer"}}>
                 <div style={{height:6,background:`linear-gradient(90deg,${p.color},${p.color}50)`}}/>
-                <div style={{height:130,background:`linear-gradient(135deg,${p.color}18,${p.color}06)`,display:"flex",alignItems:"center",justifyContent:"center"}}>
-                  <div style={{width:68,height:68,borderRadius:18,background:`${p.color}20`,border:`1.5px solid ${p.color}40`,display:"flex",alignItems:"center",justifyContent:"center",color:p.color}}>
-                    {p.icon}
+                <div style={{height:100,background:`linear-gradient(135deg,${p.color}18,${p.color}06)`,display:"flex",alignItems:"center",paddingLeft:28}}>
+                  <div>
+                    <div style={{fontSize:22,fontWeight:900,color:"#fff"}}>{p.title}</div>
+                    <div style={{fontSize:13,color:"rgba(255,255,255,.4)",marginTop:2}}>{p.sub}</div>
                   </div>
                 </div>
                 <div style={{padding:24}}>
@@ -248,9 +257,8 @@ export default function App() {
                     <span style={{fontSize:11,background:`${p.color}15`,color:p.color,padding:"3px 10px",borderRadius:20,fontWeight:700,border:`1px solid ${p.color}30`}}>{p.tag}</span>
                     <span style={{fontSize:11,background:"rgba(34,197,94,.08)",color:"#86efac",padding:"3px 10px",borderRadius:20,fontWeight:600,border:"1px solid rgba(34,197,94,.2)"}}>✓ {p.result}</span>
                   </div>
-                  <h3 style={{fontSize:18,fontWeight:800,color:"#fff",marginBottom:4}}>{p.title}</h3>
-                  <div style={{fontSize:12,color:"rgba(255,255,255,.4)",marginBottom:12,fontWeight:500}}>{p.sub}</div>
-                  <p style={{color:"rgba(255,255,255,.5)",fontSize:13,lineHeight:1.7}}>{p.desc}</p>
+                  <p style={{color:"rgba(255,255,255,.5)",fontSize:13,lineHeight:1.7,marginBottom:16}}>{p.desc}</p>
+                  <div style={{fontSize:11,color:`${p.color}`,fontWeight:600,letterSpacing:".5px"}}>Click to view details →</div>
                 </div>
               </div>
             ))}
@@ -268,8 +276,7 @@ export default function App() {
           </div>
           <div className="step-grid">
             {PROCESS.map((p,i)=>(
-              <div key={i}
-                onMouseEnter={()=>setActiveStep(i)}
+              <div key={i} onMouseEnter={()=>setActiveStep(i)}
                 style={{background:activeStep===i?"rgba(37,99,235,.12)":"#0a1120",border:`1px solid ${activeStep===i?"rgba(37,99,235,.4)":"rgba(255,255,255,.07)"}`,borderRadius:14,padding:24,cursor:"pointer",transition:"all .3s"}}>
                 <div style={{display:"flex",alignItems:"center",gap:14,marginBottom:activeStep===i?12:0}}>
                   <div style={{width:44,height:44,borderRadius:12,background:activeStep===i?"rgba(37,99,235,.25)":"rgba(255,255,255,.05)",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:900,fontSize:16,color:activeStep===i?"#60a5fa":"rgba(255,255,255,.3)",flexShrink:0,transition:"all .3s"}}>{p.num}</div>
@@ -284,65 +291,35 @@ export default function App() {
         </div>
       </section>
 
-
-
       {/* TECHNOLOGIES */}
-      <section style={{padding:"100px 24px",background:"#060b14"}}>
+      <section style={{padding:"100px 24px",background:"#0a1120"}}>
         <div style={{maxWidth:1200,margin:"0 auto"}}>
           <div style={{textAlign:"center",marginBottom:48}}>
             <div style={{fontSize:11,color:"#38bdf8",fontWeight:800,letterSpacing:"3px",textTransform:"uppercase",marginBottom:12}}>TECH STACK</div>
             <h2 style={{fontSize:isMobile?28:42,fontWeight:900,color:"#fff"}}>Technologies We Use</h2>
             <p style={{color:"rgba(255,255,255,.45)",marginTop:14,fontSize:15,maxWidth:500,margin:"14px auto 0",lineHeight:1.7}}>We choose the right tools for your goals. Our core strengths span mobile and web platforms.</p>
           </div>
-          {[
-            { cat:"Mobile Apps", tabs:[
-              { label:"Android", techs:[
-                {name:"React Native",icon:"⚛"},
-                {name:"Kotlin",icon:"🔷"},
-                {name:"Java",icon:"☕"},
-                {name:"Flutter",icon:"🐦"},
-                {name:"Firebase",icon:"🔥"},
-                {name:"Jetpack",icon:"🚀"},
-              ]},
-            ]},
-            { cat:"Web Platforms", tabs:[
-              { label:"Frontend", techs:[
-                {name:"React.js",icon:"⚛"},
-                {name:"Next.js",icon:"▲"},
-                {name:"TypeScript",icon:"📘"},
-                {name:"Tailwind",icon:"🎨"},
-                {name:"Redux",icon:"🔁"},
-              ]},
-              { label:"Backend", techs:[
-                {name:"Node.js",icon:"🟢"},
-                {name:"Express",icon:"🚂"},
-                {name:"MongoDB",icon:"🍃"},
-                {name:"PostgreSQL",icon:"🐘"},
-                {name:"REST API",icon:"🔗"},
-              ]},
-            ]},
-          ].map((section,si)=>(
-              <div key={si} style={{marginBottom:si===0?48:0}}>
-                <div style={{display:"flex",alignItems:"center",gap:20,marginBottom:24,flexWrap:"wrap"}}>
-                  <h3 style={{fontSize:18,fontWeight:700,color:"#fff",minWidth:140}}>{section.cat}</h3>
-                  <div style={{display:"flex",gap:8}}>
-                    {section.tabs.map((t,ti)=>(
-                      <button key={ti} onClick={()=>setTechTabs(prev=>{const n=[...prev];n[si]=ti;return n;})} style={{background:techTabs[si]===ti?"#2563eb":"rgba(255,255,255,.05)",border:techTabs[si]===ti?"none":"1px solid rgba(255,255,255,.1)",color:techTabs[si]===ti?"#fff":"rgba(255,255,255,.5)",padding:"7px 18px",borderRadius:20,fontWeight:600,fontSize:13,cursor:"pointer",transition:"all .2s"}}>{t.label}</button>
-                    ))}
-                  </div>
-                </div>
-                <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(130px,1fr))",gap:12}}>
-                  {section.tabs[techTabs[si]].techs.map((tech,ti)=>(
-                    <div key={ti} style={{background:"#0a1120",border:"1px solid rgba(255,255,255,.07)",borderRadius:12,padding:"18px 14px",textAlign:"center",transition:"all .25s",cursor:"default"}}
-                      onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(37,99,235,.4)";e.currentTarget.style.background="rgba(37,99,235,.08)";}}
-                      onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,.07)";e.currentTarget.style.background="#0a1120";}}>
-                      <div style={{fontSize:26,marginBottom:8}}>{tech.icon}</div>
-                      <div style={{fontSize:13,fontWeight:600,color:"rgba(255,255,255,.75)"}}>{tech.name}</div>
-                    </div>
+          {TECH_SECTIONS.map((section,si)=>(
+            <div key={si} style={{marginBottom:si===0?48:0}}>
+              <div style={{display:"flex",alignItems:"center",gap:20,marginBottom:24,flexWrap:"wrap"}}>
+                <h3 style={{fontSize:18,fontWeight:700,color:"#fff",minWidth:140}}>{section.cat}</h3>
+                <div style={{display:"flex",gap:8}}>
+                  {section.tabs.map((t,ti)=>(
+                    <button key={ti} onClick={()=>setTechTabs(prev=>{const n=[...prev];n[si]=ti;return n;})} style={{background:techTabs[si]===ti?"#2563eb":"rgba(255,255,255,.05)",border:techTabs[si]===ti?"none":"1px solid rgba(255,255,255,.1)",color:techTabs[si]===ti?"#fff":"rgba(255,255,255,.5)",padding:"7px 18px",borderRadius:20,fontWeight:600,fontSize:13,cursor:"pointer",transition:"all .2s"}}>{t.label}</button>
                   ))}
                 </div>
               </div>
-            ))}
+              <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(130px,1fr))",gap:12}}>
+                {section.tabs[techTabs[si]].techs.map((tech,ti)=>(
+                  <div key={ti} style={{background:"#060b14",border:"1px solid rgba(255,255,255,.07)",borderRadius:12,padding:"20px 14px",textAlign:"center",transition:"all .25s",cursor:"default"}}
+                    onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(37,99,235,.4)";e.currentTarget.style.background="rgba(37,99,235,.08)";}}
+                    onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,.07)";e.currentTarget.style.background="#060b14";}}>
+                    <div style={{fontSize:14,fontWeight:700,color:"rgba(255,255,255,.8)"}}>{tech}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -355,11 +332,8 @@ export default function App() {
           </div>
           <div className="ind-grid">
             {INDUSTRIES.map((ind,i)=>(
-              <div key={i} className="hover-card" style={{background:"#0a1120",border:"1px solid rgba(255,255,255,.07)",borderRadius:14,padding:"20px 16px",textAlign:"center",cursor:"pointer"}}>
-                <div style={{width:44,height:44,borderRadius:12,background:"rgba(37,99,235,.1)",border:"1px solid rgba(37,99,235,.2)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 12px",color:"#38bdf8"}}>
-                  {ind.icon}
-                </div>
-                <div style={{fontSize:13,fontWeight:600,color:"rgba(255,255,255,.8)"}}>{ind.title}</div>
+              <div key={i} className="hc" style={{background:"#0a1120",border:"1px solid rgba(255,255,255,.07)",borderRadius:14,padding:"22px 16px",textAlign:"center",cursor:"pointer"}}>
+                <div style={{fontSize:14,fontWeight:600,color:"rgba(255,255,255,.8)"}}>{ind}</div>
               </div>
             ))}
           </div>
@@ -394,15 +368,17 @@ export default function App() {
             <p style={{color:"rgba(255,255,255,.5)",fontSize:15,lineHeight:1.8,marginBottom:36}}>We help businesses innovate with smart digital solutions that transform operations and enhance customer engagement. Partner with us to optimize processes, scale efficiently, and stay ahead in the digital era.</p>
             <div style={{display:"flex",flexDirection:"column",gap:16}}>
               {[
-                {label:"Email",val:"devcorsolution@gmail.com",href:"mailto:devcorsolution@gmail.com",icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>},
-                {label:"WhatsApp",val:"+92 316 4593747",href:"https://wa.me/923164593747",icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>},
-                {label:"Facebook",val:"DevCore Solutions",href:"https://www.facebook.com/people/DevCore-Solutions/61589507374073/",icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>},
-                {label:"TikTok",val:"@devcor.solutions",href:"https://www.tiktok.com/@devcor.solutions",icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>},
+                {label:"Email",val:"devcorsolution@gmail.com",href:"mailto:devcorsolution@gmail.com"},
+                {label:"WhatsApp",val:"+92 316 4593747",href:"https://wa.me/923164593747"},
+                {label:"Facebook",val:"DevCore Solutions",href:"https://www.facebook.com/people/DevCore-Solutions/61589507374073/"},
+                {label:"TikTok",val:"@devcor.solutions",href:"https://www.tiktok.com/@devcor.solutions"},
               ].map((c,i)=>(
                 <a key={i} href={c.href} target="_blank" rel="noreferrer" style={{display:"flex",alignItems:"center",gap:14,color:"rgba(255,255,255,.6)",textDecoration:"none",transition:"color .2s"}}
                   onMouseEnter={e=>e.currentTarget.style.color="#38bdf8"}
                   onMouseLeave={e=>e.currentTarget.style.color="rgba(255,255,255,.6)"}>
-                  <div style={{width:40,height:40,borderRadius:10,background:"rgba(37,99,235,.1)",border:"1px solid rgba(37,99,235,.2)",display:"flex",alignItems:"center",justifyContent:"center",color:"#38bdf8",flexShrink:0}}>{c.icon}</div>
+                  <div style={{width:40,height:40,borderRadius:10,background:"rgba(37,99,235,.1)",border:"1px solid rgba(37,99,235,.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                    <span style={{fontSize:11,fontWeight:800,color:"#38bdf8",letterSpacing:".5px"}}>{c.label.slice(0,2).toUpperCase()}</span>
+                  </div>
                   <div>
                     <div style={{fontSize:11,color:"rgba(255,255,255,.35)",fontWeight:600,marginBottom:2}}>{c.label}</div>
                     <div style={{fontSize:14,fontWeight:500}}>{c.val}</div>
@@ -414,9 +390,7 @@ export default function App() {
           <div style={{background:"#0a1120",border:"1px solid rgba(255,255,255,.07)",borderRadius:20,padding:isMobile?"24px":"36px"}}>
             {formStatus==="sent"?(
               <div style={{textAlign:"center",padding:"40px 20px"}}>
-                <div style={{width:60,height:60,borderRadius:"50%",background:"rgba(34,197,94,.1)",border:"1px solid rgba(34,197,94,.2)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 16px"}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
+                <div style={{width:60,height:60,borderRadius:"50%",background:"rgba(34,197,94,.1)",border:"1px solid rgba(34,197,94,.2)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 16px",fontSize:24,color:"#22c55e",fontWeight:700}}>✓</div>
                 <div style={{fontWeight:700,fontSize:18,color:"#fff",marginBottom:8}}>Message Sent!</div>
                 <div style={{color:"rgba(255,255,255,.5)",fontSize:14}}>We'll get back to you within 24 hours.</div>
                 <button onClick={()=>{setFormStatus("idle");setForm({name:"",phone:"",budget:"",message:""});}} style={{marginTop:18,background:"none",border:"1px solid rgba(255,255,255,.15)",color:"rgba(255,255,255,.5)",padding:"8px 20px",borderRadius:8,cursor:"pointer",fontSize:13}}>Send Another</button>
@@ -445,6 +419,123 @@ export default function App() {
         </div>
       </section>
 
+      {/* PROJECT DIALOG OVERLAY */}
+      {hoveredProject!==null&&(()=>{
+        const p=PROJECTS[hoveredProject];
+        return(
+        <div onClick={()=>setHoveredProject(null)} style={{position:"fixed",inset:0,zIndex:500,background:"rgba(0,0,0,.75)",backdropFilter:"blur(8px)",display:"flex",alignItems:"center",justifyContent:"center",padding:20,overflowY:"auto"}}>
+          <div onClick={e=>e.stopPropagation()} style={{background:"#0d1a2e",border:`1px solid ${p.color}40`,borderRadius:20,maxWidth:680,width:"100%",overflow:"hidden",boxShadow:`0 32px 80px rgba(0,0,0,.7)`,maxHeight:"90vh",overflowY:"auto"}}>
+            <div style={{height:5,background:`linear-gradient(90deg,${p.color},${p.color}60)`}}/>
+            {/* Header */}
+            <div style={{padding:"24px 28px 0",background:`linear-gradient(135deg,${p.color}10,transparent)`}}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
+                <div>
+                  <h2 style={{fontSize:22,fontWeight:900,color:"#fff",marginBottom:3}}>{p.title}</h2>
+                  <div style={{fontSize:13,color:"rgba(255,255,255,.45)"}}>{p.sub}</div>
+                </div>
+                <button onClick={()=>setHoveredProject(null)} style={{background:"rgba(255,255,255,.08)",border:"none",color:"rgba(255,255,255,.5)",width:34,height:34,borderRadius:9,cursor:"pointer",fontSize:16,flexShrink:0}}>✕</button>
+              </div>
+              <div style={{display:"flex",gap:7,paddingBottom:20,flexWrap:"wrap"}}>
+                <span style={{fontSize:11,background:`${p.color}18`,color:p.color,padding:"3px 10px",borderRadius:20,fontWeight:700,border:`1px solid ${p.color}30`}}>{p.tag}</span>
+                <span style={{fontSize:11,background:"rgba(34,197,94,.08)",color:"#86efac",padding:"3px 10px",borderRadius:20,fontWeight:600,border:"1px solid rgba(34,197,94,.2)"}}>✓ {p.result}</span>
+              </div>
+            </div>
+
+            <div style={{padding:"20px 28px 28px",display:"flex",flexDirection:"column",gap:22}}>
+              {/* Description */}
+              <p style={{color:"rgba(255,255,255,.6)",fontSize:13.5,lineHeight:1.85}}>{p.details}</p>
+
+              {/* User + Admin Features */}
+              {p.features&&(
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+                  {[{label:"User Features",list:p.features.user},{label:"Admin Features",list:p.features.admin}].map(({label,list})=>(
+                    <div key={label} style={{background:"rgba(255,255,255,.03)",border:"1px solid rgba(255,255,255,.08)",borderRadius:12,padding:16}}>
+                      <div style={{fontSize:11,color:p.color,fontWeight:800,letterSpacing:"1.5px",textTransform:"uppercase",marginBottom:12}}>{label}</div>
+                      {list.map(item=>(
+                        <div key={item} style={{display:"flex",alignItems:"flex-start",gap:8,marginBottom:7}}>
+                          <span style={{color:p.color,fontSize:11,marginTop:2,flexShrink:0}}>▸</span>
+                          <span style={{fontSize:12.5,color:"rgba(255,255,255,.6)",lineHeight:1.5}}>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Payment & Wallet System */}
+              {p.payment&&(
+                <div style={{background:"rgba(255,255,255,.03)",border:"1px solid rgba(255,255,255,.08)",borderRadius:12,padding:16}}>
+                  <div style={{fontSize:11,color:p.color,fontWeight:800,letterSpacing:"1.5px",textTransform:"uppercase",marginBottom:12}}>Payment & Wallet System</div>
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:6}}>
+                    {p.payment.map(item=>(
+                      <div key={item} style={{display:"flex",alignItems:"flex-start",gap:8}}>
+                        <span style={{color:p.color,fontSize:11,marginTop:2,flexShrink:0}}>▸</span>
+                        <span style={{fontSize:12.5,color:"rgba(255,255,255,.6)",lineHeight:1.5}}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Demo Credentials */}
+              {p.demoAdmin&&(
+                <div style={{background:"rgba(255,255,255,.03)",border:"1px solid rgba(255,255,255,.08)",borderRadius:12,padding:16}}>
+                  <div style={{fontSize:11,color:p.color,fontWeight:800,letterSpacing:"1.5px",textTransform:"uppercase",marginBottom:14}}>Demo Credentials</div>
+                  <div style={{display:"grid",gridTemplateColumns:p.demoTeacher?"1fr 1fr 1fr":"1fr 1fr",gap:12}}>
+                    {[
+                      {role:"Admin Panel",cred:p.demoAdmin},
+                      ...(p.demoTeacher?[{role:"Teacher Panel",cred:p.demoTeacher}]:[]),
+                      {role:"User Panel",cred:p.demoUser},
+                    ].map(({role,cred})=>(
+                      <div key={role} style={{background:"rgba(0,0,0,.3)",borderRadius:10,padding:14}}>
+                        <div style={{fontSize:12,fontWeight:700,color:"rgba(255,255,255,.85)",marginBottom:10}}>{role}</div>
+                        <div style={{fontSize:12,color:"rgba(255,255,255,.5)",marginBottom:5}}>Email: <span style={{color:"rgba(255,255,255,.8)"}}>{cred.email}</span></div>
+                        <div style={{fontSize:12,color:"rgba(255,255,255,.5)",marginBottom:12}}>Password: <span style={{color:"rgba(255,255,255,.8)"}}>{cred.pass}</span></div>
+                        <a href={cred.url} target="_blank" rel="noreferrer" style={{display:"inline-block",fontSize:11,background:p.color,color:"#fff",padding:"7px 16px",borderRadius:7,textDecoration:"none",fontWeight:700}}>Open Live Demo →</a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Project Highlights */}
+              {p.highlights&&(
+                <div style={{background:"rgba(255,255,255,.03)",border:"1px solid rgba(255,255,255,.08)",borderRadius:12,padding:16}}>
+                  <div style={{fontSize:11,color:p.color,fontWeight:800,letterSpacing:"1.5px",textTransform:"uppercase",marginBottom:12}}>Project Highlights</div>
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:6}}>
+                    {p.highlights.map(item=>(
+                      <div key={item} style={{display:"flex",alignItems:"flex-start",gap:8}}>
+                        <span style={{color:"#22c55e",fontSize:11,marginTop:2,flexShrink:0}}>✓</span>
+                        <span style={{fontSize:12.5,color:"rgba(255,255,255,.6)",lineHeight:1.5}}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Use Case */}
+              {p.usecase&&(
+                <div style={{background:`${p.color}08`,border:`1px solid ${p.color}20`,borderRadius:12,padding:16}}>
+                  <div style={{fontSize:11,color:p.color,fontWeight:800,letterSpacing:"1.5px",textTransform:"uppercase",marginBottom:10}}>Use Case</div>
+                  <p style={{color:"rgba(255,255,255,.55)",fontSize:13,lineHeight:1.8}}>{p.usecase}</p>
+                </div>
+              )}
+
+              {/* Tech Stack */}
+              <div>
+                <div style={{fontSize:11,color:"rgba(255,255,255,.3)",fontWeight:700,textTransform:"uppercase",letterSpacing:"2px",marginBottom:10}}>Technology Stack</div>
+                <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+                  {p.tech.map(t=>(
+                    <span key={t} style={{fontSize:12,background:"rgba(255,255,255,.06)",color:"rgba(255,255,255,.75)",padding:"5px 12px",borderRadius:20,border:"1px solid rgba(255,255,255,.1)",fontWeight:600}}>{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        );
+      })()}
+
       {/* FOOTER */}
       <footer style={{background:"#040810",borderTop:"1px solid rgba(255,255,255,.06)",padding:"48px 24px 28px"}}>
         <div style={{maxWidth:1200,margin:"0 auto"}}>
@@ -467,7 +558,7 @@ export default function App() {
               <div key={i}>
                 <div style={{fontWeight:700,color:"#fff",fontSize:13,marginBottom:16,textTransform:"uppercase",letterSpacing:"1px"}}>{col.title}</div>
                 {col.links.map(l=>(
-                  <div key={l} style={{color:"rgba(255,255,255,.4)",fontSize:13,marginBottom:10,cursor:"pointer"}}
+                  <div key={l} style={{color:"rgba(255,255,255,.4)",fontSize:13,marginBottom:10,cursor:"pointer",transition:"color .2s"}}
                     onMouseEnter={e=>e.currentTarget.style.color="#38bdf8"}
                     onMouseLeave={e=>e.currentTarget.style.color="rgba(255,255,255,.4)"}>
                     {l}
