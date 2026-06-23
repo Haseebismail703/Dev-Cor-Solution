@@ -1,4 +1,6 @@
+import { useState } from "react";
 import HeroVideo from "../assets/hero-video.mp4";
+import HeroPoster from "../assets/hero.png";
 
 type HeroSectionProps = {
   scrollTo: (id: string) => void;
@@ -6,12 +8,47 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ scrollTo, isMobile }: HeroSectionProps) {
+  const [videoReady, setVideoReady] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+
   return (
     <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "120px 24px 80px", position: "relative", overflow: "hidden" }}>
-      <video autoPlay muted loop playsInline style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}>
-        <source src={HeroVideo} type="video/mp4" />
-      </video>
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(rgba(0,0,0,0.65)", zIndex: 1 }} />
+
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        backgroundImage: `url(${HeroPoster})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        zIndex: 0,
+      }} />
+
+      {!videoError && (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={HeroPoster}
+          onCanPlayThrough={() => setVideoReady(true)}
+          onError={() => setVideoError(true)}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 0,
+            opacity: videoReady ? 1 : 0,
+            transition: "opacity .8s ease",
+          }}
+        >
+          <source src={HeroVideo} type="video/mp4" />
+        </video>
+      )}
+
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65))", zIndex: 1 }} />
       <div style={{ position: "absolute", top: "10%", left: "50%", transform: "translateX(-50%)", width: "80vw", height: "60vh", background: "radial-gradient(ellipse,rgba(37,99,235,.15) 0%,transparent 65%)", pointerEvents: "none", zIndex: 2 }} />
       <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px)", backgroundSize: "44px 44px", pointerEvents: "none", zIndex: 2 }} />
       <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%", textAlign: "center", animation: "fadeUp .8s ease both", position: "relative", zIndex: 3 }}>

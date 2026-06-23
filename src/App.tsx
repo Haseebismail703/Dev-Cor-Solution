@@ -64,7 +64,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ fontFamily: "'Segoe UI',system-ui,sans-serif", background: "#060b14", color: "#e2e8f0", overflowX: "hidden", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Inter','Segoe UI',system-ui,sans-serif", background: "#060b14", color: "#e2e8f0", overflowX: "hidden", minHeight: "100vh" }}>
       <style>{`
         @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
         @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
