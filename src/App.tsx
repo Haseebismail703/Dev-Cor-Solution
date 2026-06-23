@@ -3,12 +3,13 @@ import { NavBar } from "./Component/NavBar";
 import { HeroSection } from "./Component/HeroSection";
 import { Ticker } from "./Component/Ticker";
 import { ServicesSection } from "./Component/ServicesSection";
+import { ServiceDetailModal } from "./Component/ServiceDetailModal";
 import { ProjectsSection } from "./Component/ProjectsSection";
 import { ProcessSection } from "./Component/ProcessSection";
 import { TechStackSection } from "./Component/TechStackSection";
 import { IndustriesSection } from "./Component/IndustriesSection";
 import { LogoSVG } from "./Component/LogoSVG";
-import { PROJECTS, FAQS } from "./data";
+import { PROJECTS, FAQS, SERVICES } from "./data";
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +17,7 @@ export default function App() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [techTabs, setTechTabs] = useState([0, 0]);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [activeService, setActiveService] = useState<number | null>(null);
   const [form, setForm] = useState({ name: "", phone: "", budget: "", message: "" });
   const [formStatus, setFormStatus] = useState("idle");
   const [isMobile, setIsMobile] = useState(false);
@@ -74,6 +76,9 @@ export default function App() {
         .hc{transition:transform .3s,border-color .3s,box-shadow .3s}
         .hc:hover{transform:translateY(-5px);border-color:rgba(37,99,235,.4)!important;box-shadow:0 16px 48px rgba(37,99,235,.15)!important}
         .srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .service-card img{transition:transform .4s ease}
+        .service-card:hover img{transform:scale(1.08)}
         .prj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
         .step-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
         .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -81,14 +86,14 @@ export default function App() {
         .ticker-inner{display:inline-flex;animation:ticker 20s linear infinite}
         .nav-link{background:none;border:none;color:rgba(255,255,255,.7);padding:8px 14px;border-radius:6px;font-size:14px;font-weight:500;cursor:pointer;transition:color .2s}
         .nav-link:hover{color:#fff}
-        @media(max-width:900px){.srv-grid{grid-template-columns:repeat(2,1fr)!important}.ind-grid{grid-template-columns:repeat(2,1fr)!important}}
-        @media(max-width:600px){.srv-grid{grid-template-columns:1fr!important}.prj-grid{grid-template-columns:1fr!important}.step-grid{grid-template-columns:1fr!important}.ind-grid{grid-template-columns:repeat(2,1fr)!important}}
+        @media(max-width:900px){.srv-grid{grid-template-columns:repeat(2,1fr)!important}.services-grid{grid-template-columns:repeat(2,1fr)!important}.ind-grid{grid-template-columns:repeat(2,1fr)!important}}
+        @media(max-width:600px){.srv-grid{grid-template-columns:1fr!important}.services-grid{grid-template-columns:1fr!important}.prj-grid{grid-template-columns:1fr!important}.step-grid{grid-template-columns:1fr!important}.ind-grid{grid-template-columns:repeat(2,1fr)!important}}
       `}</style>
 
       <NavBar isMobile={isMobile} menuOpen={menuOpen} setMenuOpen={setMenuOpen} scrollTo={scrollTo} />
       <HeroSection scrollTo={scrollTo} isMobile={isMobile} />
       <Ticker />
-      <ServicesSection isMobile={isMobile} />
+      <ServicesSection isMobile={isMobile} onServiceClick={(i: number) => setActiveService(i)} />
       <ProjectsSection isMobile={isMobile} setHoveredProject={setHoveredProject} />
       <ProcessSection isMobile={isMobile} activeStep={activeStep} setActiveStep={setActiveStep} />
       <TechStackSection isMobile={isMobile} techTabs={techTabs} setTechTabs={setTechTabs} />
@@ -279,6 +284,15 @@ export default function App() {
           </div>
         );
       })()}
+
+      {activeService !== null && (
+        <ServiceDetailModal
+          service={SERVICES[activeService]}
+          onClose={() => setActiveService(null)}
+          isMobile={isMobile}
+          scrollToContact={() => scrollTo("contact")}
+        />
+      )}
 
       <footer style={{ background: "#040810", borderTop: "1px solid rgba(255,255,255,.06)", padding: "48px 24px 28px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
