@@ -15,7 +15,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [techTabs, setTechTabs] = useState([0, 0]);
+  const [techTabs, setTechTabs] = useState([0, 0, 0, 0, 0, 0]);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [activeService, setActiveService] = useState<number | null>(null);
   const [form, setForm] = useState({ name: "", phone: "", budget: "", message: "" });
@@ -84,10 +84,13 @@ export default function App() {
         .prj-card:hover{transform:translateY(-8px)}
         .prj-card:hover img{transform:scale(1.06)!important}
         .prj-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-        .process-visible{opacity:1!important;transform:translate(0) scale(1)!important}
         .process-img-wrap:hover img{transform:scale(1.06)!important}
+        .tech-chip:hover{border-color:rgba(37,99,235,.4)!important;background:rgba(37,99,235,.08)!important;transform:translateY(-2px)}
         .step-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
         .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+        .ind-card{transition:transform .4s ease}
+        .ind-card:hover{transform:translateY(-6px)}
+        .ind-card:hover img{transform:scale(1.08)!important}
         .ticker-wrap{overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:16px 0;background:#0a1120}
         .ticker-inner{display:inline-flex;animation:ticker 20s linear infinite}
         .nav-link{background:none;border:none;color:rgba(255,255,255,.7);padding:8px 14px;border-radius:6px;font-size:14px;font-weight:500;cursor:pointer;transition:color .2s}
@@ -103,7 +106,7 @@ export default function App() {
       <ProjectsSection isMobile={isMobile} setHoveredProject={setHoveredProject} />
       <ProcessSection isMobile={isMobile} activeStep={activeStep} setActiveStep={setActiveStep} />
       <TechStackSection isMobile={isMobile} techTabs={techTabs} setTechTabs={setTechTabs} />
-      <IndustriesSection />
+      <IndustriesSection isMobile={isMobile} />
 
       <section style={{ padding: "100px 24px", background: "#0a1120" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>

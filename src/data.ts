@@ -224,14 +224,23 @@ export const PROJECTS = [
 export const PROCESS = [
   { num: "01", title: "Discovery & Planning", desc: "We get to know your company well, the target audience and objectives. Only then, we design an efficient roadmap involving the integration of technology and your long term goals so that you have a sure-footed beginning to your project, minimizing surprises and maximizing your chances of success in the long run.", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop" },
   { num: "02", title: "UI/UX Design", desc: "The designers of our team are mainly concerned with making stunning and user-friendly interfaces that can be easily navigated from the first tap. We consider both aspects of design equally, bringing to life thoughtful flows, simple layouts, and captivating visuals that add up to customer satisfaction.", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop" },
-  { num: "03", title: "Prototyping & Validation", desc: "We present interactive prototypes showcasing the main features and flows. We collect feedback, confirm ideas, and ensure the product aligns completely with your expectations before moving to development.", image: "https://images.unsplash.com/photo-1581291518633-83b4eef1d2fa?w=800&h=500&fit=crop" },
+  { num: "03", title: "Prototyping & Validation", desc: "We present interactive prototypes showcasing the main features and flows. We collect feedback, confirm ideas, and ensure the product aligns completely with your expectations before moving to development.", image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=500&fit=crop" },
   { num: "04", title: "Agile Development", desc: "Developers work in short agile sprints, advancing your product through iterative stages with tangible deliverables. Flexibility, transparency, and continuous alignment guaranteed at every step of the journey.", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop" },
   { num: "05", title: "Quality Assurance", desc: "All features undergo thorough automated and manual testing to ensure flawless performance, security, and stability — across all platforms and devices before any release.", image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&h=500&fit=crop" },
   { num: "06", title: "Deployment & Launch", desc: "We handle the total deployment process — your application will pass all platform requirements and work perfectly in the live environment, from app stores to web servers.", image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop" },
   { num: "07", title: "Monitoring & Optimization", desc: "After launch, we monitor performance, user feedback, and analytics closely. These insights inform ongoing feature refinement, improvements, and issue resolution to keep your product at peak performance.", image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop" },
 ];
 
-export const INDUSTRIES = ["eCommerce", "Healthcare", "Education", "Fintech", "Food & Delivery", "Real Estate", "Travel", "Logistics"];
+export const INDUSTRIES = [
+  { title: "eCommerce", image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=700&fit=crop" },
+  { title: "Healthcare", image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=700&fit=crop" },
+  { title: "Education", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=700&fit=crop" },
+  { title: "Fintech", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=700&fit=crop" },
+  { title: "Food & Delivery", image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=700&fit=crop" },
+  { title: "Real Estate", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=700&fit=crop" },
+  { title: "Travel", image: "https://images.unsplash.com/photo-1436491865332-7a61a109db56?w=600&h=700&fit=crop" },
+  { title: "Logistics", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=700&fit=crop" },
+];
 
 export const FAQS = [
   { q: "What mobile app development services do you offer?", a: "DevCore offers iOS, Android, cross-platform, and enterprise-level app development. We build high-performance, scalable applications customized to your business requirements from design to deployment." },
@@ -245,14 +254,41 @@ export const TICKER = ["Web Development", "Mobile Apps", "AI Solutions", "eComme
 
 export const TECH_SECTIONS = [
   {
-    cat: "Mobile Apps", tabs: [
-      { label: "Android", techs: ["React Native", "Kotlin", "Java", "Flutter", "Firebase", "Jetpack"] },
+    cat: "Mobile Apps",
+    tabs: [
+      { label: "iOS", techs: ["Swift", "Combine", "CoreData", "UIKit", "MVVM", "RxSwift"] },
+      { label: "Android", techs: ["Kotlin", "Java", "MVVM", "Retrofit", "RxJava", "Jetpack"] },
     ],
   },
   {
-    cat: "Web Platforms", tabs: [
-      { label: "Frontend", techs: ["React.js", "Next.js", "TypeScript", "Tailwind", "Redux"] },
-      { label: "Backend", techs: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST API"] },
+    cat: "Web Platforms",
+    tabs: [
+      { label: "Frontend", techs: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Redux", "Vue.js"] },
+      { label: "Backend", techs: ["Node.js", "Express.js", "NestJS", "REST API", "GraphQL", "Socket.io"] },
+    ],
+  },
+  {
+    cat: "Cross Platforms",
+    tabs: [
+      { label: "Frameworks", techs: ["React Native", "Flutter", "Ionic", "Expo", "Xamarin", "Capacitor"] },
+    ],
+  },
+  {
+    cat: "Games",
+    tabs: [
+      { label: "Engines", techs: ["Unity", "Unreal Engine", "Godot", "Cocos2d", "Phaser", "PlayCanvas"] },
+    ],
+  },
+  {
+    cat: "Database",
+    tabs: [
+      { label: "Storage", techs: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Firebase", "DynamoDB"] },
+    ],
+  },
+  {
+    cat: "Cloud & DevOps",
+    tabs: [
+      { label: "Services", techs: ["AWS", "Docker", "Vercel", "Nginx", "GitHub Actions", "Cloudflare"] },
     ],
   },
 ];
