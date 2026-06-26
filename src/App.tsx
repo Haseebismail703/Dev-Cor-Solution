@@ -80,6 +80,12 @@ export default function App() {
         .service-card img{transition:transform .4s ease}
         .service-card:hover img{transform:scale(1.08)}
         .prj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+        .prj-card{transition:transform .4s ease}
+        .prj-card:hover{transform:translateY(-8px)}
+        .prj-card:hover img{transform:scale(1.06)!important}
+        .prj-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .process-visible{opacity:1!important;transform:translate(0) scale(1)!important}
+        .process-img-wrap:hover img{transform:scale(1.06)!important}
         .step-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
         .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
         .ticker-wrap{overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:16px 0;background:#0a1120}
