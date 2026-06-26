@@ -44,6 +44,7 @@ export default function App() {
         body: JSON.stringify({ ...form, _subject: `New Inquiry from ${form.name}` }),
       });
       const data = await response.json();
+      console.log("Contact form data: ", data)
       setFormStatus(data.success === "true" || data.success === true ? "sent" : "error");
     } catch {
       setFormStatus("error");

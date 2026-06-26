@@ -238,7 +238,7 @@ export const INDUSTRIES = [
   { title: "Fintech", image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=700&fit=crop" },
   { title: "Food & Delivery", image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=700&fit=crop" },
   { title: "Real Estate", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=700&fit=crop" },
-  { title: "Travel", image: "https://images.unsplash.com/photo-1436491865332-7a61a109db56?w=600&h=700&fit=crop" },
+  { title: "Travel", image: "https://5.imimg.com/data5/SELLER/Default/2026/3/594588880/SA/HC/CU/24045641/travel-agency-software-development-service-500x500.png" },
   { title: "Logistics", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=700&fit=crop" },
 ];
 
